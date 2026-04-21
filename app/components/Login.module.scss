@@ -1,0 +1,187 @@
+// Variables
+$color-primary: #39cdcc;
+$color-primary-hover: #2fb9b7;
+$color-heading: #213f7d;
+$color-text: #545f7d;
+$color-text-muted: rgba(#545f7d, 0.6);
+$color-border: rgba(#545f7d, 0.15);
+$color-white: #ffffff;
+
+$font-size-heading: 40px;
+$font-size-subheading: 20px;
+$font-size-sm: 14px;
+
+$breakpoint-md: 768px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//  Layout
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+// Left Panel
+.leftPanel {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  background-color: $color-white;
+  padding: 3rem;
+
+  @media (min-width: $breakpoint-md) {
+    display: flex;
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 5rem;
+  left: 5rem;
+  z-index: 10;
+}
+
+.illustration {
+  @include flex-center;
+  height: 100%;
+  width: 100%;
+}
+
+.illustrationImage {
+  max-height: 80%;
+  width: auto;
+  object-fit: contain;
+}
+
+// Right Panel
+.rightPanel {
+  @include flex-center;
+  width: 100%;
+  background-color: $color-white;
+  padding: 1.5rem;
+
+  @media (min-width: $breakpoint-md) {
+    width: 50%;
+  }
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 28rem;
+
+  > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+// Mobile Logo
+.mobileLogo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+// Heading
+.heading {
+  margin-top: -2.5rem;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+
+  h1 {
+    font-size: $font-size-heading;
+    font-weight: 700;
+    color: $color-heading;
+    margin: 0;
+  }
+
+  p {
+    font-size: $font-size-subheading;
+    color: $color-text;
+    margin: 0.5rem 0 0;
+  }
+}
+
+// Form
+.form {
+  margin-top: 3rem;
+
+  > * + * {
+    margin-top: 1.25rem;
+  }
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 2px solid $color-border;
+  background-color: $color-white;
+  padding: 0.75rem;
+  color: $color-text;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+  font-weight: 400;
+
+  &::placeholder {
+    color: $color-text-muted;
+    font-family: "Avenir Next", "Avenir", sans-serif;
+    font-weight: 400;
+  }
+}
+
+.inputWrapper {
+  background: transparent;
+}
+
+.inputTitle {
+  color: $color-text;
+  font-weight: 500;
+}
+
+//  Forgot Password
+.forgotPassword {
+  text-align: left;
+
+  a {
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-primary;
+    text-decoration: none;
+    font-family: "Avenir Next", "Avenir", sans-serif;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+//  Submit Button
+.submitButton {
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: $color-primary;
+  padding: 0.75rem;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+}
