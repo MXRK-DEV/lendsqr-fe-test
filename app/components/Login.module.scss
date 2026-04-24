@@ -33,7 +33,7 @@ $breakpoint-md: 768px;
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 50%;
   background-color: $color-white;
   padding: 3rem;
@@ -52,14 +52,16 @@ $breakpoint-md: 768px;
 
 .illustration {
   @include flex-center;
-  height: 100%;
   width: 100%;
+  margin-top: 6rem;
+  height: auto;
 }
 
 .illustrationImage {
-  max-height: 80%;
-  width: auto;
+  width: 600px;
+  height: 337.57px;
   object-fit: contain;
+  max-height: none;
 }
 
 // Right Panel
@@ -83,7 +85,6 @@ $breakpoint-md: 768px;
   }
 }
 
-// Mobile Logo
 .mobileLogo {
   display: flex;
   justify-content: center;
@@ -94,10 +95,9 @@ $breakpoint-md: 768px;
   }
 }
 
-// Heading
 .heading {
   margin-top: -2.5rem;
-  font-family: "Avenir Next", "Avenir", sans-serif;
+  font-family: var(--font-avenir-next), sans-serif;
 
   h1 {
     font-size: $font-size-heading;
@@ -108,6 +108,7 @@ $breakpoint-md: 768px;
 
   p {
     font-size: $font-size-subheading;
+    font-weight: 400;
     color: $color-text;
     margin: 0.5rem 0 0;
   }
@@ -184,4 +185,12 @@ $breakpoint-md: 768px;
   &:hover {
     background-color: $color-primary-hover;
   }
+}
+
+// Error message styling
+.errorText {
+  color: #e4033b;
+  font-size: 12px;
+  margin-top: 0.25rem;
+  font-family: "Avenir Next", "Avenir", sans-serif;
 }

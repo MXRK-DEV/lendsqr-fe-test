@@ -1,0 +1,143 @@
+.container {
+  background: #fff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* DIVIDER */
+.divider {
+  border-top: 1px solid rgba(33, 63, 125, 0.2);
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+/* FIELD */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #545f7d;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #545f7d;
+}
+
+.fieldValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #545f7d;
+
+  /* TRUNCATE */
+  display: block;
+  max-width: 100%;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* MOBILE TRUNCATIONE */
+@media (max-width: 640px) {
+  .fieldValue {
+    max-width: 180px;
+  }
+}
+
+/* SECTION TITLE */
+.sectionTitle {
+  font-family: var(--font-work-sans), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #213f7d;
+}
+
+/* PERSONAL GRID */
+.gridPersonal {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 16px;
+}
+
+/* EDUCATION GRID */
+.gridEducation {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 16px;
+}
+
+/* GUARANTOR GRID */
+.gridGuarantor {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* SOCIALS FLEX */
+.socialsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (min-width: 640px) {
+  .socialsContainer {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 144px;
+  }
+}
+
+/* GUARANTOR SPACING */
+.guarantorSpacer {
+  height: 16px;
+}
+
+@media (min-width: 768px) {
+  .guarantorSpacer {
+    height: 32px;
+  }
+}
+
+/* DIVIDER WRAPPER*/
+.dividerWrapper {
+  margin: 24px 0;
+}
+
+/* EMPTY TEXT */
+.emptyText {
+  font-size: 14px;
+  color: #545f7d;
+  margin-top: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  .label {
+    font-size: 12px;
+    color: #545f7d;
+    font-family: var(--font-work-sans), sans-serif;
+    font-weight: 400;
+  }
+
+  .value {
+    font-family: var(--font-work-sans), sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+
+    color: #545f7d;
+  }
+}

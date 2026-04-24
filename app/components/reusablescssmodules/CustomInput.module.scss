@@ -1,4 +1,49 @@
-// Box Sizing
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+// LABEL
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.star {
+  margin-left: 0.25rem;
+  color: #ef4444;
+}
+
+// INPUT WRAPPER
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+// INPUT
+.input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+
+  font-size: 0.875rem;
+  outline: none;
+
+  &:focus {
+    border-color: #213f7d;
+  }
+}
+
+// BORDER MODES
 .boxBorder {
   box-sizing: border-box;
 }
@@ -7,33 +52,51 @@
   box-sizing: content-box;
 }
 
-// Input
-.input {
+// DATE INPUT
+.datePickerInput {
+  padding-right: 2.5rem;
+}
+
+// CALENDAR BUTTON
+.calendarButton {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: transparent;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  padding: 0;
+
+  color: #6b7280;
+
+  &:hover {
+    color: #374151;
+  }
+
   &:focus {
     outline: none;
-    box-shadow: none;
   }
 }
 
-//  Label
-.label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
+// HIDDEN DATE INPUT
+.hiddenDateInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
-//  Required Star
-.star {
-  margin-left: 0.25rem;
-  color: #ef4444;
-}
-
-// Counter
+// COUNTER
 .counter {
-  margin-top: 0.25rem;
-  text-align: left;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #94a3b8;
+  margin-top: 0.25rem;
 }

@@ -1,0 +1,269 @@
+// Variables
+$primary-teal: #39cdcc;
+$color-heading: #213f7d;
+$color-text: #545f7d;
+$color-red: #e4033b;
+$color-gold: #e9b200;
+$color-border: rgba(33, 63, 125, 0.06);
+$color-white: #ffffff;
+$color-black-08: rgba(0, 0, 0, 0.8);
+
+$breakpoint-md: 768px;
+
+// Outer container
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+// Back button
+.backButton {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $color-text;
+  font-size: 0.875rem;
+  width: fit-content;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Header row
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 500;
+  color: $color-heading;
+
+  font-size: 1.5rem;
+}
+
+.actionButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+// Blacklist / Activate buttons
+.blacklistButton,
+.activateButton {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.15s;
+  cursor: pointer;
+  background: transparent;
+}
+
+.blacklistButton {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 500;
+  color: $color-red;
+  border: 1px solid $color-red;
+
+  &:hover:not(:disabled) {
+    background-color: rgba($color-red, 0.05);
+  }
+}
+
+.activateButton {
+  color: $primary-teal;
+  border: 1px solid $primary-teal;
+
+  &:hover:not(:disabled) {
+    background-color: rgba($primary-teal, 0.05);
+  }
+}
+
+.buttonDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+// Card
+.card {
+  background-color: $color-white;
+  border-radius: 0.125rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid $color-border;
+}
+
+// Top section
+.topSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  gap: 1rem;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+}
+
+// User info block
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userName {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 500;
+  color: $color-heading;
+
+  font-size: 22px;
+}
+
+.userId {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 400;
+  color: $color-text;
+  font-size: 14px;
+}
+
+//  divider hidden
+.divider {
+  display: none;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+    height: 5rem;
+
+    border-left: 1px solid rgba(84, 95, 125, 0.2);
+
+    margin: 0 1.5rem;
+  }
+}
+
+// Tier section
+.tierSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tierLabel {
+  color: $color-heading;
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.starIcon {
+  color: $color-gold;
+}
+
+// Bank section
+.bankSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.balance {
+  color: $color-heading;
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.bankDetails {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 400;
+  color: #213f7d;
+  font-size: 14px;
+}
+
+// Tabs container
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  font-family: "SFCompactText", sans-serif;
+  font-weight: 400;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  overflow-x: auto;
+  // Hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @media (min-width: $breakpoint-md) {
+    gap: 2rem;
+  }
+}
+
+// Tab buttons
+.tab {
+  padding: 1rem 0.75rem 0.75rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  &::before,
+  &::after {
+    display: none !important;
+    content: none !important;
+  }
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+  color: $color-black-08;
+}
+
+.tabActive {
+  color: $primary-teal;
+  border-bottom-color: $primary-teal;
+}
+
+.tabInactive {
+  color: $color-black-08;
+
+  &:hover {
+    color: $primary-teal;
+  }
+}

@@ -1,10 +1,14 @@
 "use client";
 
-import React, { InputHTMLAttributes, useEffect, useState, useId } from "react";
-import { clsx } from "clsx";
+import React, {
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+  useId,
+  useRef,
+} from "react";
+import Image from "next/image";
 import styles from "../reusablescssmodules/CustomInput.module.scss";
-
-const cn = (...inputs: string[]) => clsx(inputs);
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
@@ -16,6 +20,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   showCounter?: boolean;
   showStar?: boolean;
   id?: string;
+  datePicker?: boolean;
+  dateFormat?: (date: Date) => string;
 }
 
 const CustomInput: React.FC<InputProps> = ({
@@ -31,11 +37,16 @@ const CustomInput: React.FC<InputProps> = ({
   onChange,
   maxLength,
   id: externalId,
+  datePicker = false,
+  dateFormat = (date) => date.toISOString().split("T")[0],
   ...rest
 }) => {
   const generatedId = useId();
   const id = externalId || `input-${generatedId}`;
+
   const [currentLength, setCurrentLength] = useState(0);
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const hiddenDateInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (showCounter && value !== undefined) {
@@ -50,48 +61,111 @@ const CustomInput: React.FC<InputProps> = ({
     onChange?.(e);
   };
 
-  const inputClasses = cn(
-    borderBox ? styles.boxBorder : styles.boxContent,
+  const handleDateIconClick = () => {
+    if (isPickerOpen) {
+      hiddenDateInputRef.current?.blur();
+      setIsPickerOpen(false);
+    } else {
+      setIsPickerOpen(true);
+      hiddenDateInputRef.current?.showPicker?.();
+      hiddenDateInputRef.current?.click();
+    }
+  };
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dateStr = e.target.value;
+
+    if (dateStr) {
+      const [year, month, day] = dateStr.split("-").map(Number);
+      const date = new Date(year, month - 1, day);
+
+      const formatted = dateFormat(date);
+
+      const syntheticEvent = {
+        ...e,
+        target: {
+          ...e.target,
+          value: formatted,
+        },
+      } as React.ChangeEvent<HTMLInputElement>;
+
+      onChange?.(syntheticEvent);
+    }
+
+    setIsPickerOpen(false);
+  };
+
+  const handleDateBlur = () => {
+    setIsPickerOpen(false);
+  };
+
+  const inputClasses = [
     styles.input,
+    borderBox ? styles.boxBorder : styles.boxContent,
+    datePicker ? styles.datePickerInput : "",
     className,
-  );
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  const inputElement = (
-    <input
-      id={id}
-      className={inputClasses || undefined}
-      placeholder={placeholder}
-      value={value}
-      onChange={handleChange}
-      maxLength={maxLength}
-      {...rest}
-    />
-  );
-
-  const labelClasses = cn(styles.label, titleClassName);
-
-  const content = (
-    <>
+  return (
+    <div className={wrapperClassName || styles.wrapper}>
       {title && (
-        <label htmlFor={id} className={labelClasses}>
+        <label htmlFor={id} className={`${styles.label} ${titleClassName}`}>
           {title}
           {showStar && <span className={styles.star}>*</span>}
         </label>
       )}
-      {inputElement}
+
+      <div className={styles.inputWrapper}>
+        <input
+          id={id}
+          className={inputClasses}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          maxLength={maxLength}
+          {...rest}
+        />
+
+        {datePicker && (
+          <>
+            <button
+              type="button"
+              onClick={handleDateIconClick}
+              className={styles.calendarButton}
+              aria-label={
+                isPickerOpen ? "Close date picker" : "Open date picker"
+              }
+            >
+              <Image
+                src="/icon/calendar.svg"
+                alt="Calendar"
+                width={16}
+                height={16}
+              />
+            </button>
+
+            <input
+              ref={hiddenDateInputRef}
+              type="date"
+              className={styles.hiddenDateInput}
+              onChange={handleDateChange}
+              onBlur={handleDateBlur}
+              aria-hidden="true"
+              tabIndex={-1}
+            />
+          </>
+        )}
+      </div>
+
       {showCounter && maxLength && (
         <div className={styles.counter}>
           {currentLength} / {maxLength}
         </div>
       )}
-    </>
+    </div>
   );
-
-  if (wrapperClassName) {
-    return <div className={wrapperClassName}>{content}</div>;
-  }
-
-  return content;
 };
 
 export default CustomInput;
