@@ -44,6 +44,8 @@ $breakpoint-md: 768px;
 }
 
 .loadingText {
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 400;
   color: $color-text;
   font-size: 0.875rem;
 }
