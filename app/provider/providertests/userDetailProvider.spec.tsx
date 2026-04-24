@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { useParams } from "next/navigation";
-import UserDetailProvider from "./UserDetailProvider";
+import UserDetailProvider from "../UserDetailProvider";
 import { type UserData } from "@/hooks/useUsers";
 
 jest.mock("next/navigation", () => ({ useParams: jest.fn() }));

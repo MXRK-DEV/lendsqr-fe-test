@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { useUsers, type UserData } from "@/hooks/useUsers";
 import UserDetailCard from "@/app/components/UserDetail";
 import UserContext from "@/context/UserContext";
-import styles from "./UserDetailProvider.module.scss";
+import styles from "./providerscssmodules/UserDetailProvider.module.scss";
 
 const STORAGE_KEY = (id: string) => `user_detail_${id}`;
 

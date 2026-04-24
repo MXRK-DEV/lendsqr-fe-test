@@ -3,7 +3,7 @@
 import React from "react";
 import Sidebar from "@/app/components/Sidebar";
 import Header from "@/app/components/Header";
-import styles from "./UserLayout.module.scss";
+import styles from "./componentsscssmodules/UserLayout.module.scss";
 
 export default function UserLayout({
   children,

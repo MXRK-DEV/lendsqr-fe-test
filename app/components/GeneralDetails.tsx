@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useUser } from "@/context/UserContext";
-import styles from "./GeneralDetails.module.scss";
+import styles from "./componentsscssmodules/GeneralDetails.module.scss";
 
 const Field = ({
   label,

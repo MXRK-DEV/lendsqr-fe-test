@@ -5,7 +5,7 @@ import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import { type UserData } from "@/hooks/useUsers";
 import { toast } from "sonner";
-import styles from "./UserDetail.module.scss";
+import styles from "./componentsscssmodules/UserDetail.module.scss";
 
 const TABS = [
   { label: "General Details", slug: "general" },

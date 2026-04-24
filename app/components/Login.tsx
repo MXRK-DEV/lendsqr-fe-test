@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import CustomInput from "./Reusables/CustomInput";
 import CustomInputPassword from "./Reusables/CustomInputPassword";
 import Image from "next/image";
-import styles from "./Login.module.scss";
+import styles from "./componentsscssmodules/Login.module.scss";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 

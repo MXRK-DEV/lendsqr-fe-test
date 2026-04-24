@@ -5,7 +5,7 @@ import { IoIosSearch } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import styles from "./Header.module.scss";
+import styles from "./componentsscssmodules/Header.module.scss";
 
 import { useAuthUser } from "@/hooks/useAuthUser";
 

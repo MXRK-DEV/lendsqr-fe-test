@@ -4,7 +4,7 @@ import React from "react";
 import { InfoCard } from "./Reusables/Card";
 import UserTable from "./UserTable";
 import { useUsers } from "@/hooks/useUsers";
-import styles from "./Users.module.scss";
+import styles from "./componentsscssmodules/Users.module.scss";
 
 const InfoCardSkeleton = () => (
   <div className={styles.cardSkeleton}>

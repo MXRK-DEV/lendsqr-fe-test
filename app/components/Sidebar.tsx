@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import styles from "./Sidebar.module.scss";
+import styles from "./componentsscssmodules/Sidebar.module.scss";
 
 const Sidebar = () => {
   const pathname = usePathname();

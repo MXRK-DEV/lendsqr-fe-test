@@ -17,7 +17,7 @@ import { useUsers, type UserData } from "@/hooks/useUsers";
 import Pagination from "./Reusables/Pagination";
 import CustomSelect from "./Reusables/CustomSelect";
 import CustomInput from "./Reusables/CustomInput";
-import styles from "./UserTable.module.scss";
+import styles from "./componentsscssmodules/UserTable.module.scss";
 
 const UserTable: React.FC = () => {
   const router = useRouter();
