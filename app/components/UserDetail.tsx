@@ -158,6 +158,27 @@ const UserDetailCard = ({ user }: UserDetailCardProps) => {
           })}
         </div>
       </div>
+
+      <div className={styles.mobileActionButtons}>
+        <button
+          onClick={handleBlacklist}
+          disabled={!canBlacklist}
+          className={`${styles.blacklistButton} ${
+            !canBlacklist ? styles.buttonDisabled : ""
+          }`}
+        >
+          Blacklist User
+        </button>
+        <button
+          onClick={handleActivate}
+          disabled={!canActivate}
+          className={`${styles.activateButton} ${
+            !canActivate ? styles.buttonDisabled : ""
+          }`}
+        >
+          Activate User
+        </button>
+      </div>
     </div>
   );
 };
