@@ -6,10 +6,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import styles from "./componentsscssmodules/Sidebar.module.scss";
+import { useAuthUser } from "@/hooks/useAuthUser";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const isUsersActive = pathname === "/users";
+  const { logout } = useAuthUser();
+  const isUsersActive = pathname.startsWith("/users");
 
   const [showHint, setShowHint] = useState(false);
   const hintCount = useRef(0);
@@ -309,6 +311,33 @@ const Sidebar = () => {
             priority
           />
           <span>Audit Logs</span>
+        </div>
+        <div className={styles.navLink}>
+          <Image
+            src="/icon/systemsmessages.svg"
+            alt="Audit Logs"
+            width={16}
+            height={16}
+            priority
+          />
+          <span>Systems Messages</span>
+        </div>
+        <div className={styles.logoutWrapper}>
+          <div className={styles.logoutLink} onClick={logout}>
+            <Image
+              src="/icon/signout.svg"
+              alt="Dashboard"
+              width={16}
+              height={16}
+              priority
+            />
+            <span>Logout</span>
+          </div>
+        </div>
+        <div className={styles.vWrapper}>
+          <div className={styles.vLink}>
+            <span>v1.2.0</span>
+          </div>
         </div>
       </nav>
     </aside>
