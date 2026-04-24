@@ -8,8 +8,12 @@ import styles from "./Login.module.scss";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+import { useAuthUser } from "@/hooks/useAuthUser";
+
 const Login = () => {
   const router = useRouter();
+
+  const { storeNameFromEmail } = useAuthUser();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +51,8 @@ const Login = () => {
     if (!validate()) return;
 
     try {
+      storeNameFromEmail(email);
+
       await new Promise((resolve) => setTimeout(resolve, 800));
 
       toast.success("Login successful!");

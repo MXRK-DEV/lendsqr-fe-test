@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./Header.module.scss";
 
-// Custom hook - mobile viewport
+import { useAuthUser } from "@/hooks/useAuthUser";
+
 const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
   useEffect(() => {
@@ -26,10 +27,11 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  const { displayName } = useAuthUser();
+
   const searchIconRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown for surroundings onclick
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -121,7 +123,6 @@ const Header = () => {
             </button>
           </div>
         ) : (
-          // Mobile: collapsible search
           <>
             <button
               ref={searchIconRef}
@@ -181,7 +182,8 @@ const Header = () => {
               priority
             />
           </div>
-          <span className={styles.userName}>Adedeji</span>
+
+          <span className={styles.userName}>{displayName}</span>
           <FaCaretDown size={16} className={styles.caret} />
         </div>
       </div>
