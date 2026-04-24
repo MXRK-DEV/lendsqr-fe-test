@@ -43,7 +43,7 @@
   text-overflow: ellipsis;
 }
 
-/* MOBILE TRUNCATIONE */
+/* MOBILE TRUNCATE*/
 @media (max-width: 640px) {
   .fieldValue {
     max-width: 180px;
@@ -137,7 +137,41 @@
     font-family: var(--font-work-sans), sans-serif;
     font-weight: 500;
     font-size: 16px;
-
     color: #545f7d;
+
+    /* TRUNCATE */
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/*  RESPONSIVE GRID ADJUSTMENTS*/
+@media (max-width: 768px) {
+  .gridPersonal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gridEducation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gridGuarantor {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .gridPersonal,
+  .gridEducation,
+  .gridGuarantor {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .socialsContainer {
+    flex-direction: column;
+    gap: 16px;
   }
 }
