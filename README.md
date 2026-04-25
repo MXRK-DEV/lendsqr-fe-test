@@ -233,7 +233,7 @@ Request Flow:
 3. React Query caches response globally
 4. Component accesses via useUsers() hook
 5. For detail pages: data stored in localStorage
-6. Offline-first approach: cached data used when offline
+6. Offline-first approach: cached data used when offline.
 
 #### 6. Scaling Path
 
