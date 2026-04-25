@@ -1,6 +1,6 @@
 Lendsqr Dashboard
 
-A modern, full-stack user management dashboard built with Next.js 16, React 19, and . This application provides a comprehensive interface for managing users with features including authentication, user listing, and detailed user information pages.
+A modern user management dashboard built with Next.js 16, React 19, and TypeScript, featuring a mock REST API, client-side state management, and localStorage persistence.This application provides a comprehensive interface for managing users with features including authentication, user listing, and detailed user information pages.
 
 ## Overview
 
