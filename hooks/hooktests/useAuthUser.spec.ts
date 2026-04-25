@@ -1,7 +1,22 @@
 import { renderHook, act } from "@testing-library/react";
 import { useAuthUser } from "@/hooks/useAuthUser";
 
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    back: jest.fn(),
+    forward: jest.fn(),
+    refresh: jest.fn(),
+  })),
+}));
+
 const STORAGE_KEY = "lendsqr_userName";
+
+beforeEach(() => {
+  localStorage.clear();
+});
 
 beforeEach(() => {
   localStorage.clear();
