@@ -86,7 +86,7 @@ $breakpoint-md: 768px;
 }
 
 .mobileLogo {
-  display: flex;
+  display: none;
   justify-content: center;
   margin-bottom: 2rem;
 
@@ -132,11 +132,18 @@ $breakpoint-md: 768px;
   color: $color-text;
   font-family: "Avenir Next", "Avenir", sans-serif;
   font-weight: 400;
+  transition: all 0.2s ease;
 
   &::placeholder {
     color: $color-text-muted;
     font-family: "Avenir Next", "Avenir", sans-serif;
     font-weight: 400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 1px rgba($color-primary, 0.15);
   }
 }
 
