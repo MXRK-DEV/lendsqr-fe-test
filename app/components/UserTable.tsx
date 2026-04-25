@@ -713,6 +713,7 @@ const UserTable: React.FC = () => {
                 titleClassName={styles.filterFieldTitle}
                 placeholder="Select organization"
                 className={styles.filterField}
+                optionClassName={styles.option}
                 wrapperClassName="bg-transparent"
                 options={[
                   { value: "Lendsqr", label: "Lendsqr" },
@@ -776,6 +777,7 @@ const UserTable: React.FC = () => {
                 titleClassName={styles.filterFieldTitle}
                 placeholder="Select status"
                 className={styles.filterField}
+                optionClassName={styles.option}
                 wrapperClassName="bg-transparent"
                 options={[
                   { value: "Active", label: "Active" },

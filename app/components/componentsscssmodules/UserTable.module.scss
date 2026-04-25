@@ -23,6 +23,10 @@ $breakpoint-md: 768px;
   padding: 1.5rem;
   border: 1px solid $color-border;
 }
+.option {
+  font-family: var(--font-work-sans), sans-serif;
+  font-size: 0.875rem;
+}
 
 // Loading state
 .loadingWrapper {
