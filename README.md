@@ -39,7 +39,7 @@ This project is a production-ready dashboard that demonstrates best practices in
 
 - Next.js 16.2.4: Full-stack React framework with built-in optimization
 - React 19.2.4: UI library with latest features
-- 5: Type-safe JavaScript for better code quality
+- TypeScript 5: Type-safe JavaScript for better code quality
 - SCSS (Sass 1.99.0): Advanced CSS preprocessing with modules
 
 ### State Management & Data Fetching
