@@ -363,451 +363,453 @@ const UserTable: React.FC = () => {
   }
 
   return (
-    <div className={styles.container}>
-      {/* Active filter indicator */}
-      {activeFilterCount > 0 && (
-        <div className={styles.filterIndicator}>
-          <span className={styles.filterBadge}>
-            {activeFilterCount} filter{activeFilterCount > 1 ? "s" : ""} active
-          </span>
-          <span className={styles.filterResultsDot}>·</span>
-          <span className={styles.filterResultsText}>
-            {totalItems} result{totalItems !== 1 ? "s" : ""} found
-          </span>
-          <button onClick={handleReset} className={styles.clearFiltersButton}>
-            Clear all filters
-          </button>
-        </div>
-      )}
-
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th className={styles.tableHeaderCell}>
-                <div className={styles.tableHeaderContent}>
-                  <span>ORGANIZATION</span>
-                  <div
-                    ref={(el) => {
-                      filterIconRefs.current[0] = el;
-                    }}
-                    className={styles.filterIconWrapper}
-                    data-filter-icon="true"
-                  >
-                    <IoFilterSharp
-                      className={`${styles.filterIcon} ${
-                        filterOpenIndex === 0
-                          ? styles.filterIconActive
-                          : styles.filterIconInactive
-                      }`}
-                      size={14}
-                      onClick={() => handleFilterClick(0)}
-                    />
-                  </div>
-                </div>
-              </th>
-
-              <th
-                className={`${styles.tableHeaderCell} ${styles.hiddenOnMobile}`}
-              >
-                <div className={styles.tableHeaderContent}>
-                  <span>USERNAME</span>
-                  <div
-                    ref={(el) => {
-                      filterIconRefs.current[1] = el;
-                    }}
-                    className={styles.filterIconWrapper}
-                    data-filter-icon="true"
-                  >
-                    <IoFilterSharp
-                      className={`${styles.filterIcon} ${
-                        filterOpenIndex === 1
-                          ? styles.filterIconActive
-                          : styles.filterIconInactive
-                      }`}
-                      size={14}
-                      onClick={() => handleFilterClick(1)}
-                    />
-                  </div>
-                </div>
-              </th>
-
-              <th
-                className={`${styles.tableHeaderCell} ${styles.hiddenOnMobile}`}
-              >
-                <div className={styles.tableHeaderContent}>
-                  <span>EMAIL</span>
-                  <div
-                    ref={(el) => {
-                      filterIconRefs.current[2] = el;
-                    }}
-                    className={styles.filterIconWrapper}
-                    data-filter-icon="true"
-                  >
-                    <IoFilterSharp
-                      className={`${styles.filterIcon} ${
-                        filterOpenIndex === 2
-                          ? styles.filterIconActive
-                          : styles.filterIconInactive
-                      }`}
-                      size={14}
-                      onClick={() => handleFilterClick(2)}
-                    />
-                  </div>
-                </div>
-              </th>
-
-              <th className={styles.tableHeaderCell}>
-                <div className={styles.tableHeaderContent}>
-                  <span>PHONE NUMBER</span>
-                  <div
-                    ref={(el) => {
-                      filterIconRefs.current[3] = el;
-                    }}
-                    className={styles.filterIconWrapper}
-                    data-filter-icon="true"
-                  >
-                    <IoFilterSharp
-                      className={`${styles.filterIcon} ${
-                        filterOpenIndex === 3
-                          ? styles.filterIconActive
-                          : styles.filterIconInactive
-                      }`}
-                      size={14}
-                      onClick={() => handleFilterClick(3)}
-                    />
-                  </div>
-                </div>
-              </th>
-
-              <th
-                className={`${styles.tableHeaderCell} ${styles.hiddenOnMobile}`}
-              >
-                <div className={styles.tableHeaderContent}>
-                  <span>DATE JOINED</span>
-                  <div
-                    ref={(el) => {
-                      filterIconRefs.current[4] = el;
-                    }}
-                    className={styles.filterIconWrapper}
-                    data-filter-icon="true"
-                  >
-                    <IoFilterSharp
-                      className={`${styles.filterIcon} ${
-                        filterOpenIndex === 4
-                          ? styles.filterIconActive
-                          : styles.filterIconInactive
-                      }`}
-                      size={14}
-                      onClick={() => handleFilterClick(4)}
-                    />
-                  </div>
-                </div>
-              </th>
-
-              <th className={styles.tableHeaderCell}>
-                <div className={styles.tableHeaderContent}>
-                  <span>STATUS</span>
-                  <div
-                    ref={(el) => {
-                      filterIconRefs.current[5] = el;
-                    }}
-                    className={styles.filterIconWrapper}
-                    data-filter-icon="true"
-                  >
-                    <IoFilterSharp
-                      className={`${styles.filterIcon} ${
-                        filterOpenIndex === 5
-                          ? styles.filterIconActive
-                          : styles.filterIconInactive
-                      }`}
-                      size={14}
-                      onClick={() => handleFilterClick(5)}
-                    />
-                  </div>
-                </div>
-              </th>
-              {/* Actions column */}
-              <th
-                className={styles.tableHeaderCell}
-                style={{ width: "2.5rem" }}
-              />
-            </tr>
-          </thead>
-          <tbody>
-            {paginatedData.length === 0 ? (
-              <tr>
-                <td colSpan={7} className={styles.tableCell}>
-                  No users match the current filters.
-                </td>
-              </tr>
-            ) : (
-              paginatedData.map((row, index) => {
-                const isLastRow = index === paginatedData.length - 1;
-                return (
-                  <tr key={index} className={styles.tableRow}>
-                    <td className={getCellClass(isLastRow, false)}>
-                      {row.organization}
-                    </td>
-                    <td className={getCellClass(isLastRow, true)}>
-                      {row.username}
-                    </td>
-                    <td className={getCellClass(isLastRow, true)}>
-                      {row.email}
-                    </td>
-                    <td className={getCellClass(isLastRow, false)}>
-                      {row.phone}
-                    </td>
-                    <td className={getCellClass(isLastRow, true)}>
-                      {row.dateJoined}
-                      {row.timeJoined ? ` ${row.timeJoined}` : ""}
-                    </td>
-                    <td className={getCellClass(isLastRow, false)}>
-                      <span
-                        className={`${styles.statusBadge} ${getStatusClass(
-                          row.status,
-                        )}`}
-                      >
-                        {row.status}
-                      </span>
-                    </td>
-                    <td className={getCellClass(isLastRow, false)}>
-                      <div className={styles.actionCell}>
-                        <button
-                          onClick={() => toggleDropdown(index)}
-                          className={styles.moreButton}
-                          aria-label="More options"
-                        >
-                          <MdMoreVert className={styles.moreIcon} size={20} />
-                        </button>
-                        {openDropdownIndex === index && (
-                          <div
-                            ref={(el) => {
-                              dropdownRefs.current[index] = el;
-                            }}
-                            className={styles.actionDropdown}
-                          >
-                            <button
-                              onClick={() => {
-                                setOpenDropdownIndex(null);
-                                router.push(`/users/detail/${row.id}`);
-                              }}
-                              className={styles.actionDropdownItem}
-                            >
-                              <Image
-                                src="/icon/viewdetails.svg"
-                                alt="View Details"
-                                width={16}
-                                height={16}
-                              />
-                              View Details
-                            </button>
-                            <button
-                              onClick={() => {
-                                toast.warning(
-                                  `${row.username} has been blacklisted.`,
-                                  { position: "bottom-right" },
-                                );
-                                setOpenDropdownIndex(null);
-                              }}
-                              disabled={
-                                row.status !== "Active" &&
-                                row.status !== "Pending"
-                              }
-                              className={`${styles.actionDropdownItem} ${
-                                row.status !== "Active" &&
-                                row.status !== "Pending"
-                                  ? styles.actionDropdownItemDisabled
-                                  : ""
-                              }`}
-                            >
-                              <Image
-                                src="/icon/blacklistuser.svg"
-                                alt="Blacklist User"
-                                width={16}
-                                height={16}
-                              />
-                              Blacklist User
-                            </button>
-                            <button
-                              onClick={() => {
-                                toast.success(
-                                  `${row.username} has been activated.`,
-                                  { position: "bottom-right" },
-                                );
-                                setOpenDropdownIndex(null);
-                              }}
-                              disabled={
-                                row.status !== "Blacklisted" &&
-                                row.status !== "Pending"
-                              }
-                              className={`${styles.actionDropdownItem} ${
-                                row.status !== "Blacklisted" &&
-                                row.status !== "Pending"
-                                  ? styles.actionDropdownItemDisabled
-                                  : ""
-                              }`}
-                            >
-                              <Image
-                                src="/icon/activateuser.svg"
-                                alt="Activate User"
-                                width={16}
-                                height={16}
-                              />
-                              Activate User
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Filter Dropdown */}
-      {filterOpenIndex !== null &&
-        createPortal(
-          <div
-            ref={filterRef}
-            className={styles.filterDropdown}
-            style={{
-              width: "270px",
-              top: `${dropdownPosition.top}px`,
-              left: `${dropdownPosition.left}px`,
-              transform: "translateX(-50%)",
-            }}
-          >
-            {/* Scroll hint */}
-            <div
-              className={`${styles.scrollHint} ${
-                showHint ? styles.scrollHintVisible : styles.scrollHintHidden
-              }`}
-            >
-              <span className={styles.scrollHintDots}>
-                <span
-                  className={styles.scrollHintDot}
-                  style={{ animationDelay: "0ms" }}
-                />
-                <span
-                  className={styles.scrollHintDot}
-                  style={{ animationDelay: "150ms" }}
-                />
-                <span
-                  className={styles.scrollHintDot}
-                  style={{ animationDelay: "300ms" }}
-                />
-              </span>
-              Scroll your screen to see more
-            </div>
-
-            <div
-              className={styles.filterForm}
-              style={{ maxHeight: `${DROPDOWN_HEIGHT - 20}px` }}
-            >
-              <CustomSelect
-                title="Organization"
-                titleClassName={styles.filterFieldTitle}
-                placeholder="Select organization"
-                className={styles.filterField}
-                optionClassName={styles.option}
-                wrapperClassName="bg-transparent"
-                options={[
-                  { value: "Lendsqr", label: "Lendsqr" },
-                  { value: "Irorun", label: "Irorun" },
-                  { value: "Lendstar", label: "Lendstar" },
-                  { value: "Paystack", label: "Paystack" },
-                  { value: "Flutterwave", label: "Flutterwave" },
-                ]}
-                value={organization}
-                onChange={(e) => setOrganization(extractValue(e))}
-              />
-              <CustomInput
-                className={styles.filterField}
-                wrapperClassName="bg-transparent"
-                titleClassName={styles.filterFieldTitle}
-                title="Username"
-                placeholder="User"
-                value={username}
-                onChange={(e) => setUsername(extractValue(e))}
-                borderBox
-              />
-              <CustomInput
-                className={styles.filterField}
-                wrapperClassName="bg-transparent"
-                titleClassName={styles.filterFieldTitle}
-                title="Email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(extractValue(e))}
-                borderBox
-              />
-              <CustomInput
-                className={styles.filterField}
-                wrapperClassName="bg-transparent"
-                titleClassName={styles.filterFieldTitle}
-                title="Date"
-                placeholder="Date"
-                value={dateJoined}
-                onChange={(e) => setDateJoined(extractValue(e))}
-                datePicker
-                borderBox
-                dateFormat={(date: Date) => {
-                  const y = date.getFullYear();
-                  const m = String(date.getMonth() + 1).padStart(2, "0");
-                  const d = String(date.getDate()).padStart(2, "0");
-                  return `${y}-${m}-${d}`;
-                }}
-              />
-              <CustomInput
-                className={styles.filterField}
-                wrapperClassName="bg-transparent"
-                titleClassName={styles.filterFieldTitle}
-                title="Phone Number"
-                placeholder="Phone Number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(extractValue(e))}
-                borderBox
-              />
-              <CustomSelect
-                title="Status"
-                titleClassName={styles.filterFieldTitle}
-                placeholder="Select status"
-                className={styles.filterField}
-                optionClassName={styles.option}
-                wrapperClassName="bg-transparent"
-                options={[
-                  { value: "Active", label: "Active" },
-                  { value: "Inactive", label: "Inactive" },
-                  { value: "Pending", label: "Pending" },
-                  { value: "Blacklisted", label: "Blacklisted" },
-                ]}
-                value={status}
-                onChange={(e) => setStatus(extractValue(e))}
-              />
-
-              <div className={styles.filterActions}>
-                <button
-                  onClick={handleReset}
-                  className={styles.filterResetButton}
-                >
-                  Reset
-                </button>
-                <button
-                  onClick={handleApplyFilter}
-                  className={styles.filterApplyButton}
-                >
-                  Filter
-                </button>
-              </div>
-            </div>
-          </div>,
-          document.body,
+    <>
+      <div className={styles.container}>
+        {/* Active filter indicator */}
+        {activeFilterCount > 0 && (
+          <div className={styles.filterIndicator}>
+            <span className={styles.filterBadge}>
+              {activeFilterCount} filter{activeFilterCount > 1 ? "s" : ""}{" "}
+              active
+            </span>
+            <span className={styles.filterResultsDot}>·</span>
+            <span className={styles.filterResultsText}>
+              {totalItems} result{totalItems !== 1 ? "s" : ""} found
+            </span>
+            <button onClick={handleReset} className={styles.clearFiltersButton}>
+              Clear all filters
+            </button>
+          </div>
         )}
 
+        <div className={styles.tableWrapper}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th className={styles.tableHeaderCell}>
+                  <div className={styles.tableHeaderContent}>
+                    <span>ORGANIZATION</span>
+                    <div
+                      ref={(el) => {
+                        filterIconRefs.current[0] = el;
+                      }}
+                      className={styles.filterIconWrapper}
+                      data-filter-icon="true"
+                    >
+                      <IoFilterSharp
+                        className={`${styles.filterIcon} ${
+                          filterOpenIndex === 0
+                            ? styles.filterIconActive
+                            : styles.filterIconInactive
+                        }`}
+                        size={14}
+                        onClick={() => handleFilterClick(0)}
+                      />
+                    </div>
+                  </div>
+                </th>
+
+                <th
+                  className={`${styles.tableHeaderCell} ${styles.hiddenOnMobile}`}
+                >
+                  <div className={styles.tableHeaderContent}>
+                    <span>USERNAME</span>
+                    <div
+                      ref={(el) => {
+                        filterIconRefs.current[1] = el;
+                      }}
+                      className={styles.filterIconWrapper}
+                      data-filter-icon="true"
+                    >
+                      <IoFilterSharp
+                        className={`${styles.filterIcon} ${
+                          filterOpenIndex === 1
+                            ? styles.filterIconActive
+                            : styles.filterIconInactive
+                        }`}
+                        size={14}
+                        onClick={() => handleFilterClick(1)}
+                      />
+                    </div>
+                  </div>
+                </th>
+
+                <th
+                  className={`${styles.tableHeaderCell} ${styles.hiddenOnMobile}`}
+                >
+                  <div className={styles.tableHeaderContent}>
+                    <span>EMAIL</span>
+                    <div
+                      ref={(el) => {
+                        filterIconRefs.current[2] = el;
+                      }}
+                      className={styles.filterIconWrapper}
+                      data-filter-icon="true"
+                    >
+                      <IoFilterSharp
+                        className={`${styles.filterIcon} ${
+                          filterOpenIndex === 2
+                            ? styles.filterIconActive
+                            : styles.filterIconInactive
+                        }`}
+                        size={14}
+                        onClick={() => handleFilterClick(2)}
+                      />
+                    </div>
+                  </div>
+                </th>
+
+                <th className={styles.tableHeaderCell}>
+                  <div className={styles.tableHeaderContent}>
+                    <span>PHONE NUMBER</span>
+                    <div
+                      ref={(el) => {
+                        filterIconRefs.current[3] = el;
+                      }}
+                      className={styles.filterIconWrapper}
+                      data-filter-icon="true"
+                    >
+                      <IoFilterSharp
+                        className={`${styles.filterIcon} ${
+                          filterOpenIndex === 3
+                            ? styles.filterIconActive
+                            : styles.filterIconInactive
+                        }`}
+                        size={14}
+                        onClick={() => handleFilterClick(3)}
+                      />
+                    </div>
+                  </div>
+                </th>
+
+                <th
+                  className={`${styles.tableHeaderCell} ${styles.hiddenOnMobile}`}
+                >
+                  <div className={styles.tableHeaderContent}>
+                    <span>DATE JOINED</span>
+                    <div
+                      ref={(el) => {
+                        filterIconRefs.current[4] = el;
+                      }}
+                      className={styles.filterIconWrapper}
+                      data-filter-icon="true"
+                    >
+                      <IoFilterSharp
+                        className={`${styles.filterIcon} ${
+                          filterOpenIndex === 4
+                            ? styles.filterIconActive
+                            : styles.filterIconInactive
+                        }`}
+                        size={14}
+                        onClick={() => handleFilterClick(4)}
+                      />
+                    </div>
+                  </div>
+                </th>
+
+                <th className={styles.tableHeaderCell}>
+                  <div className={styles.tableHeaderContent}>
+                    <span>STATUS</span>
+                    <div
+                      ref={(el) => {
+                        filterIconRefs.current[5] = el;
+                      }}
+                      className={styles.filterIconWrapper}
+                      data-filter-icon="true"
+                    >
+                      <IoFilterSharp
+                        className={`${styles.filterIcon} ${
+                          filterOpenIndex === 5
+                            ? styles.filterIconActive
+                            : styles.filterIconInactive
+                        }`}
+                        size={14}
+                        onClick={() => handleFilterClick(5)}
+                      />
+                    </div>
+                  </div>
+                </th>
+                {/* Actions column */}
+                <th
+                  className={styles.tableHeaderCell}
+                  style={{ width: "2.5rem" }}
+                />
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedData.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className={styles.tableCell}>
+                    No users match the current filters.
+                  </td>
+                </tr>
+              ) : (
+                paginatedData.map((row, index) => {
+                  const isLastRow = index === paginatedData.length - 1;
+                  return (
+                    <tr key={index} className={styles.tableRow}>
+                      <td className={getCellClass(isLastRow, false)}>
+                        {row.organization}
+                      </td>
+                      <td className={getCellClass(isLastRow, true)}>
+                        {row.username}
+                      </td>
+                      <td className={getCellClass(isLastRow, true)}>
+                        {row.email}
+                      </td>
+                      <td className={getCellClass(isLastRow, false)}>
+                        {row.phone}
+                      </td>
+                      <td className={getCellClass(isLastRow, true)}>
+                        {row.dateJoined}
+                        {row.timeJoined ? ` ${row.timeJoined}` : ""}
+                      </td>
+                      <td className={getCellClass(isLastRow, false)}>
+                        <span
+                          className={`${styles.statusBadge} ${getStatusClass(
+                            row.status,
+                          )}`}
+                        >
+                          {row.status}
+                        </span>
+                      </td>
+                      <td className={getCellClass(isLastRow, false)}>
+                        <div className={styles.actionCell}>
+                          <button
+                            onClick={() => toggleDropdown(index)}
+                            className={styles.moreButton}
+                            aria-label="More options"
+                          >
+                            <MdMoreVert className={styles.moreIcon} size={20} />
+                          </button>
+                          {openDropdownIndex === index && (
+                            <div
+                              ref={(el) => {
+                                dropdownRefs.current[index] = el;
+                              }}
+                              className={styles.actionDropdown}
+                            >
+                              <button
+                                onClick={() => {
+                                  setOpenDropdownIndex(null);
+                                  router.push(`/users/detail/${row.id}`);
+                                }}
+                                className={styles.actionDropdownItem}
+                              >
+                                <Image
+                                  src="/icon/viewdetails.svg"
+                                  alt="View Details"
+                                  width={16}
+                                  height={16}
+                                />
+                                View Details
+                              </button>
+                              <button
+                                onClick={() => {
+                                  toast.warning(
+                                    `${row.username} has been blacklisted.`,
+                                    { position: "bottom-right" },
+                                  );
+                                  setOpenDropdownIndex(null);
+                                }}
+                                disabled={
+                                  row.status !== "Active" &&
+                                  row.status !== "Pending"
+                                }
+                                className={`${styles.actionDropdownItem} ${
+                                  row.status !== "Active" &&
+                                  row.status !== "Pending"
+                                    ? styles.actionDropdownItemDisabled
+                                    : ""
+                                }`}
+                              >
+                                <Image
+                                  src="/icon/blacklistuser.svg"
+                                  alt="Blacklist User"
+                                  width={16}
+                                  height={16}
+                                />
+                                Blacklist User
+                              </button>
+                              <button
+                                onClick={() => {
+                                  toast.success(
+                                    `${row.username} has been activated.`,
+                                    { position: "bottom-right" },
+                                  );
+                                  setOpenDropdownIndex(null);
+                                }}
+                                disabled={
+                                  row.status !== "Blacklisted" &&
+                                  row.status !== "Pending"
+                                }
+                                className={`${styles.actionDropdownItem} ${
+                                  row.status !== "Blacklisted" &&
+                                  row.status !== "Pending"
+                                    ? styles.actionDropdownItemDisabled
+                                    : ""
+                                }`}
+                              >
+                                <Image
+                                  src="/icon/activateuser.svg"
+                                  alt="Activate User"
+                                  width={16}
+                                  height={16}
+                                />
+                                Activate User
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Filter Dropdown */}
+        {filterOpenIndex !== null &&
+          createPortal(
+            <div
+              ref={filterRef}
+              className={styles.filterDropdown}
+              style={{
+                width: "270px",
+                top: `${dropdownPosition.top}px`,
+                left: `${dropdownPosition.left}px`,
+                transform: "translateX(-50%)",
+              }}
+            >
+              {/* Scroll hint */}
+              <div
+                className={`${styles.scrollHint} ${
+                  showHint ? styles.scrollHintVisible : styles.scrollHintHidden
+                }`}
+              >
+                <span className={styles.scrollHintDots}>
+                  <span
+                    className={styles.scrollHintDot}
+                    style={{ animationDelay: "0ms" }}
+                  />
+                  <span
+                    className={styles.scrollHintDot}
+                    style={{ animationDelay: "150ms" }}
+                  />
+                  <span
+                    className={styles.scrollHintDot}
+                    style={{ animationDelay: "300ms" }}
+                  />
+                </span>
+                Scroll your screen to see more
+              </div>
+
+              <div
+                className={styles.filterForm}
+                style={{ maxHeight: `${DROPDOWN_HEIGHT - 20}px` }}
+              >
+                <CustomSelect
+                  title="Organization"
+                  titleClassName={styles.filterFieldTitle}
+                  placeholder="Select organization"
+                  className={styles.filterField}
+                  optionClassName={styles.option}
+                  wrapperClassName="bg-transparent"
+                  options={[
+                    { value: "Lendsqr", label: "Lendsqr" },
+                    { value: "Irorun", label: "Irorun" },
+                    { value: "Lendstar", label: "Lendstar" },
+                    { value: "Paystack", label: "Paystack" },
+                    { value: "Flutterwave", label: "Flutterwave" },
+                  ]}
+                  value={organization}
+                  onChange={(e) => setOrganization(extractValue(e))}
+                />
+                <CustomInput
+                  className={styles.filterField}
+                  wrapperClassName="bg-transparent"
+                  titleClassName={styles.filterFieldTitle}
+                  title="Username"
+                  placeholder="User"
+                  value={username}
+                  onChange={(e) => setUsername(extractValue(e))}
+                  borderBox
+                />
+                <CustomInput
+                  className={styles.filterField}
+                  wrapperClassName="bg-transparent"
+                  titleClassName={styles.filterFieldTitle}
+                  title="Email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(extractValue(e))}
+                  borderBox
+                />
+                <CustomInput
+                  className={styles.filterField}
+                  wrapperClassName="bg-transparent"
+                  titleClassName={styles.filterFieldTitle}
+                  title="Date"
+                  placeholder="Date"
+                  value={dateJoined}
+                  onChange={(e) => setDateJoined(extractValue(e))}
+                  datePicker
+                  borderBox
+                  dateFormat={(date: Date) => {
+                    const y = date.getFullYear();
+                    const m = String(date.getMonth() + 1).padStart(2, "0");
+                    const d = String(date.getDate()).padStart(2, "0");
+                    return `${y}-${m}-${d}`;
+                  }}
+                />
+                <CustomInput
+                  className={styles.filterField}
+                  wrapperClassName="bg-transparent"
+                  titleClassName={styles.filterFieldTitle}
+                  title="Phone Number"
+                  placeholder="Phone Number"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(extractValue(e))}
+                  borderBox
+                />
+                <CustomSelect
+                  title="Status"
+                  titleClassName={styles.filterFieldTitle}
+                  placeholder="Select status"
+                  className={styles.filterField}
+                  optionClassName={styles.option}
+                  wrapperClassName="bg-transparent"
+                  options={[
+                    { value: "Active", label: "Active" },
+                    { value: "Inactive", label: "Inactive" },
+                    { value: "Pending", label: "Pending" },
+                    { value: "Blacklisted", label: "Blacklisted" },
+                  ]}
+                  value={status}
+                  onChange={(e) => setStatus(extractValue(e))}
+                />
+
+                <div className={styles.filterActions}>
+                  <button
+                    onClick={handleReset}
+                    className={styles.filterResetButton}
+                  >
+                    Reset
+                  </button>
+                  <button
+                    onClick={handleApplyFilter}
+                    className={styles.filterApplyButton}
+                  >
+                    Filter
+                  </button>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )}
+      </div>
       <div className={styles.paginationWrapper}>
         <Pagination
           currentPage={currentPage}
@@ -818,7 +820,7 @@ const UserTable: React.FC = () => {
           onRowsPerPageChange={handleRowsPerPageChange}
         />
       </div>
-    </div>
+    </>
   );
 };
 
